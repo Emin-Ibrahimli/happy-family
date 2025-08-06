@@ -27,7 +27,7 @@ public class Human {
         this.father = father;
     }
 
-    public Human(String name, String surname, int age, int iq, Pet pet, Human mother, Human father, Stirng[][] schedule) {
+    public Human(String name, String surname, int age, int iq, Pet pet, Human mother, Human father, String[][] schedule) {
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = age;
@@ -42,11 +42,11 @@ public class Human {
     }
 
     public void greetPet(){
-        System.out.println("Hello, " + pet.getNickName);
+        System.out.println("Hello, " + pet.getNickName());
     }
 
     public void discribePet(){
-        System.out.printf("I have an %s is %d years old",  pet.getSpecies, pet.getAge,pet.getIq > 50 ?  "very sly" : "almost not sly");
+        System.out.printf("I have an %s is %d years old, he is %s",  pet.getSpecies(), pet.getAge(),pet.getTrickLevel() > 50 ?  "very sly" : "almost not sly");
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Human {
                 ", surname='" + surname + '\'' +
                 ", year=" + dateOfBirth +
                 ", iq=" + iq +
-                ", pet=" + pet +
+                ", BasePack.pet=" + pet +
                 ", mother=" + mother +
                 ", father=" + father +
                 ", schedule=" + Arrays.toString(schedule) +
