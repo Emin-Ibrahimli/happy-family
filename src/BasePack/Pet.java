@@ -1,20 +1,22 @@
+package BasePack;
+
 import java.util.Arrays;
 
-public class pet {
+public class Pet {
     private String species;
     private String nickName;
     private int age;
     private int trickLevel;
     private String []habits;
 
-    private pet(){
+    private Pet(){
 
     }
-    private pet(String species,String nickname){
+    private Pet(String species, String nickname){
         this.species=species;
         this.nickName=nickname;
     }
-    private pet(String species,String nickName,int age,int trickLevel,String [] habits){
+    private Pet(String species, String nickName, int age, int trickLevel, String [] habits){
         this.species=species;
         this.nickName=nickName;
         this.age=age;
@@ -30,7 +32,7 @@ public class pet {
         this.species = species;
     }
 
-    public String getNickname() {
+    public String getNickName() {
         return nickName;
     }
 
@@ -67,7 +69,7 @@ public class pet {
 
 
     public void eat(){
-        System.out.println("Pet eating");
+        System.out.println("BasePack.Pet eating");
     }
   public void respond(){
       System.out.printf("Hello owner. i am - %s.I miss you",nickName);

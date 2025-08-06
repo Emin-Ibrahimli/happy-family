@@ -11,7 +11,7 @@ public class Human {
     private Pet pet;
     private Human mother;
     private Human father;
-    private Stirng[][] schedule;
+    private String[][] schedule;
 
     public Human(String name, String surname, int age) {
         this.name = name;
