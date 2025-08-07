@@ -9,15 +9,15 @@ public class Pet {
     private int trickLevel;
     private String[] habits;
 
-    private Pet() {
+    public Pet() {
     }
 
-    private Pet(String species, String nickname) {
+    public Pet(String species, String nickname) {
         this.species = species;
         this.nickName = nickname;
     }
 
-    private Pet(String species, String nickName, int age, int trickLevel, String[] habits) {
+    public Pet(String species, String nickName, int age, int trickLevel, String[] habits) {
         this.species = species;
         this.nickName = nickName;
         this.age = age;
@@ -66,11 +66,12 @@ public class Pet {
     }
 
     public void eat() {
-        System.out.println("BasePack.Pet eating");
+        System.out.println("Pet eating");
     }
 
     public void respond() {
         System.out.printf("Hello owner. i am - %s.I miss you", nickName);
+        System.out.println();
     }
 
     public void foul() {
