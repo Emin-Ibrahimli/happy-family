@@ -1,6 +1,7 @@
 package BasePack;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Pet {
     private String species;
@@ -79,8 +80,21 @@ public class Pet {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return age == pet.age && trickLevel == pet.trickLevel && Objects.equals(species, pet.species) && Objects.equals(nickName, pet.nickName) && Objects.deepEquals(habits, pet.habits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(species, nickName, age, trickLevel, Arrays.hashCode(habits));
+    }
+
+    @Override
     public String toString() {
-        return "pet{" +
+        return "Pet{" +
+                "species='" + species + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", age=" + age +
                 ", trickLevel=" + trickLevel +
