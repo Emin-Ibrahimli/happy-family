@@ -3,29 +3,19 @@ package BasePack;
 public class HappyFamilyApp {
     public static void main(String[] args) {
 
-        Pet pet = new Pet("dog", "Rock", 5, 75, new String[]{"eat", "sleep", "play"});
+        Human father = new Human("John", "Smith", 1990);
+        Human mother = new Human("Anna", "Smith", 1995);
 
-        Human mother = new Human("Sara", "Karleone", 1975);
-        Human father = new Human("John", "Karleone", 1973);
+        Family family = new Family(father, mother);
 
-        Human child = new Human("Michael", "Karleone", 2000, 90, pet, mother, father,
-                new String[][]{
-                        {"Monday", "go to gym"},
-                        {"Tuesday", "play guitar"}
-                });
+        Human child = new Human("Mike", "Smith", 2020);
+        Human child2 = new Human("John", "Smith", 2021);
 
-        child.describePet();
-        child.greetPet();
-        child.toString();
+        family.addChild(child);
+        family.addChild(child2);
+        System.out.println(family.toString());
 
-        pet.eat();
-        pet.respond();
-        pet.foul();
 
-        child.setPet(pet);
-        child.setMother(mother);
-        child.setFather(father);
-
-        System.out.println(child);
+        System.out.println("Family count: " + family.countFamily());
     }
 }

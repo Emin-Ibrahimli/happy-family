@@ -1,6 +1,7 @@
 package BasePack;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Human {
 
@@ -8,34 +9,30 @@ public class Human {
     private String surname;
     private int dateOfBirth;
     private int iq;
-    private Pet pet;
-    private Human mother;
-    private Human father;
     private String[][] schedule;
+    private Family family;
 
-    public Human(String name, String surname, int age) {
+    public Human(String name, String surname, int dateOfBirth) {
         this.name = name;
         this.surname = surname;
-        this.dateOfBirth = age;
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public Human(String name, String surname, int age, Human mother, Human father) {
+    public Human(String name, String surname, int dateOfBirth, int iq, String[][] schedule) {
         this.name = name;
         this.surname = surname;
-        this.dateOfBirth = age;
-        this.mother = mother;
-        this.father = father;
-    }
-
-    public Human(String name, String surname, int age, int iq, Pet pet, Human mother, Human father, String[][] schedule) {
-        this.name = name;
-        this.surname = surname;
-        this.dateOfBirth = age;
+        this.dateOfBirth = dateOfBirth;
         this.iq = iq;
-        this.pet = pet;
-        this.mother = mother;
-        this.father = father;
         this.schedule = schedule;
+    }
+
+    public Human(String name, String surname, int dateOfBirth, int iq, String[][] schedule, Family family) {
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.iq = iq;
+        this.schedule = schedule;
+        this.family = family;
     }
 
     public Human() {
@@ -73,30 +70,6 @@ public class Human {
         this.iq = iq;
     }
 
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
-    public Human getMother() {
-        return mother;
-    }
-
-    public void setMother(Human mother) {
-        this.mother = mother;
-    }
-
-    public Human getFather() {
-        return father;
-    }
-
-    public void setFather(Human father) {
-        this.father = father;
-    }
-
     public String[][] getSchedule() {
         return schedule;
     }
@@ -105,12 +78,32 @@ public class Human {
         this.schedule = schedule;
     }
 
+    public Family getFamily() {
+        return family;
+    }
+
+    public void setFamily(Family family) {
+        this.family = family;
+    }
+
     public void greetPet() {
-        System.out.println("Hello, " + pet.getNickName());
+        System.out.println("Hello, " + family.getPet().getNickName());
     }
 
     public void describePet() {
-        System.out.printf("I have an %s is %d years old, he is %s", pet.getSpecies(), pet.getAge(), pet.getTrickLevel() > 50 ? "very sly" : "almost not sly");
+        System.out.printf("I have an %s is %d years old, he is %s", family.getPet().getSpecies(), family.getPet().getAge(), family.getPet().getTrickLevel() > 50 ? "very sly" : "almost not sly");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Human human = (Human) o;
+        return dateOfBirth == human.dateOfBirth && iq == human.iq && Objects.equals(name, human.name) && Objects.equals(surname, human.surname) && Objects.deepEquals(schedule, human.schedule);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, dateOfBirth, iq, Arrays.deepHashCode(schedule), family);
     }
 
     @Override
@@ -120,9 +113,6 @@ public class Human {
                 ", surname='" + surname + '\'' +
                 ", year=" + dateOfBirth +
                 ", iq=" + iq +
-                ", pet=" + (pet != null ? pet.getNickName() : "null") +
-                ", mother=" + (mother != null ? mother.name + mother.surname : "null") +
-                ", father=" + (father != null ? father.name + father.surname : "null") +
                 ", schedule=" + (schedule != null ? Arrays.deepToString(schedule) : "null") +
                 '}';
     }
