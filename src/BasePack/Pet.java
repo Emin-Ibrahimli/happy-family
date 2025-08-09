@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Pet {
-    private String species;
+    private Species specie;
     private String nickName;
     private int age;
     private int trickLevel;
@@ -13,25 +13,25 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(String species, String nickname) {
-        this.species = species;
+    public Pet(Species specie, String nickname) {
+        this.specie = specie;
         this.nickName = nickname;
     }
 
-    public Pet(String species, String nickName, int age, int trickLevel, String[] habits) {
-        this.species = species;
+    public Pet(Species specie, String nickName, int age, int trickLevel, String[] habits) {
+        this.specie = specie;
         this.nickName = nickName;
         this.age = age;
         this.trickLevel = trickLevel;
         this.habits = habits;
     }
 
-    public String getSpecies() {
-        return species;
+    public Species getSpecies() {
+        return specie;
     }
 
-    public void setSpecies(String species) {
-        this.species = species;
+    public void setSpecies(Species specie) {
+        this.specie = specie;
     }
 
     public String getNickName() {
@@ -92,18 +92,18 @@ public class Pet {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return age == pet.age && trickLevel == pet.trickLevel && Objects.equals(species, pet.species) && Objects.equals(nickName, pet.nickName) && Objects.deepEquals(habits, pet.habits);
+        return age == pet.age && trickLevel == pet.trickLevel && Objects.equals(specie, pet.specie) && Objects.equals(nickName, pet.nickName) && Objects.deepEquals(habits, pet.habits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(species, nickName, age, trickLevel, Arrays.hashCode(habits));
+        return Objects.hash(specie, nickName, age, trickLevel, Arrays.hashCode(habits));
     }
 
     @Override
     public String toString() {
         return "Pet{" +
-                "species='" + species + '\'' +
+                "species='" + specie + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", age=" + age +
                 ", trickLevel=" + trickLevel +
