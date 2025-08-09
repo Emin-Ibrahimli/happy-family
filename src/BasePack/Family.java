@@ -110,6 +110,15 @@ public class Family {
     }
 
     @Override
+    protected void finalize() throws Throwable {
+        try {
+            System.out.println("Removing Family object");
+        } finally {
+            super.finalize();
+        }
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Family family = (Family) o;

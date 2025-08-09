@@ -80,6 +80,15 @@ public class Pet {
     }
 
     @Override
+    protected void finalize() throws Throwable {
+        try {
+            System.out.println("Removing Pet object");
+        } finally {
+            super.finalize();
+        }
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
