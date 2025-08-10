@@ -3,8 +3,8 @@ package BasePack;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Pet {
-    private Species specie;
+public abstract class Pet {
+    private Species species = Species.UNKNOWN;
     private String nickName;
     private int age;
     private int trickLevel;
@@ -13,25 +13,23 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(Species specie, String nickname) {
-        this.specie = specie;
+    public Pet(String nickname) {
         this.nickName = nickname;
     }
 
-    public Pet(Species specie, String nickName, int age, int trickLevel, String[] habits) {
-        this.specie = specie;
-        this.nickName = nickName;
+    public Pet(String nickName, int age, int trickLevel, String[] habits) {
+        this(nickName);
         this.age = age;
         this.trickLevel = trickLevel;
         this.habits = habits;
     }
 
     public Species getSpecies() {
-        return specie;
+        return species;
     }
 
-    public void setSpecies(Species specie) {
-        this.specie = specie;
+    protected void setSpecies(Species species) {
+        this.species = species;
     }
 
     public String getNickName() {
@@ -70,14 +68,7 @@ public class Pet {
         System.out.println("Pet eating");
     }
 
-    public void respond() {
-        System.out.printf("Hello owner. i am - %s.I miss you", nickName);
-        System.out.println();
-    }
-
-    public void foul() {
-        System.out.println("I need to cover it up");
-    }
+    public abstract void respond();
 
     @Override
     protected void finalize() throws Throwable {
@@ -92,18 +83,18 @@ public class Pet {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return age == pet.age && trickLevel == pet.trickLevel && Objects.equals(specie, pet.specie) && Objects.equals(nickName, pet.nickName) && Objects.deepEquals(habits, pet.habits);
+        return age == pet.age && trickLevel == pet.trickLevel && Objects.equals(species, pet.species) && Objects.equals(nickName, pet.nickName) && Objects.deepEquals(habits, pet.habits);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(specie, nickName, age, trickLevel, Arrays.hashCode(habits));
+        return Objects.hash(species, nickName, age, trickLevel, Arrays.hashCode(habits));
     }
 
     @Override
     public String toString() {
         return "Pet{" +
-                "species='" + specie + '\'' +
+                "species='" + species + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", age=" + age +
                 ", trickLevel=" + trickLevel +

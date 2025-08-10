@@ -1,15 +1,6 @@
 package BasePack;
 
 public enum Species {
-    DOG,
-    CAT,
-    BIRD,
-    FISH,
-    HAMSTER,
-    RABBIT,
-    TURTLE,
-    HORSE,
-    SNAKE,
-    LIZARD
+    FISH, DOMESTIC_CAT, DOG, ROBO_CAT, UNKNOWN
 }
 
