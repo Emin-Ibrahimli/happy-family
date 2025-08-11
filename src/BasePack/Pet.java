@@ -3,8 +3,8 @@ package BasePack;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Pet {
-    private String species;
+public abstract class Pet {
+    private Species species = Species.UNKNOWN;
     private String nickName;
     private int age;
     private int trickLevel;
@@ -13,24 +13,22 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(String species, String nickname) {
-        this.species = species;
+    public Pet(String nickname) {
         this.nickName = nickname;
     }
 
-    public Pet(String species, String nickName, int age, int trickLevel, String[] habits) {
-        this.species = species;
-        this.nickName = nickName;
+    public Pet(String nickName, int age, int trickLevel, String[] habits) {
+        this(nickName);
         this.age = age;
         this.trickLevel = trickLevel;
         this.habits = habits;
     }
 
-    public String getSpecies() {
+    public Species getSpecies() {
         return species;
     }
 
-    public void setSpecies(String species) {
+    protected void setSpecies(Species species) {
         this.species = species;
     }
 
@@ -70,13 +68,15 @@ public class Pet {
         System.out.println("Pet eating");
     }
 
-    public void respond() {
-        System.out.printf("Hello owner. i am - %s.I miss you", nickName);
-        System.out.println();
-    }
+    public abstract void respond();
 
-    public void foul() {
-        System.out.println("I need to cover it up");
+    @Override
+    protected void finalize() throws Throwable {
+        try {
+            System.out.println("Removing Pet object");
+        } finally {
+            super.finalize();
+        }
     }
 
     @Override

@@ -56,6 +56,9 @@ public class Family {
     }
 
     public void addChild(Human child) {
+        if (child == null) {
+            return;
+        }
 
         if (children == null) {
             children = new Human[0];
@@ -98,6 +101,23 @@ public class Family {
         return true;
     }
 
+    public boolean deleteChild(int index) {
+        if (children == null || index < 0 || index >= children.length) {
+            return false;
+        }
+        Human removedChild = children[index];
+        Human[] newChildren = new Human[children.length - 1];
+        for (int i = 0, j = 0; i < children.length; i++) {
+            if (i != index) {
+                newChildren[j++] = children[i];
+            }
+        }
+        children = newChildren;
+        removedChild.setFamily(null);
+        System.out.println("Deleted child at index " + index + ": " + removedChild);
+        return true;
+    }
+
     public int countFamily() {
 
         int count = 2;
@@ -107,6 +127,15 @@ public class Family {
             }
         }
         return count;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        try {
+            System.out.println("Removing Family object");
+        } finally {
+            super.finalize();
+        }
     }
 
     @Override

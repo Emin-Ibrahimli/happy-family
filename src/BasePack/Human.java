@@ -95,6 +95,15 @@ public class Human {
     }
 
     @Override
+    protected void finalize() throws Throwable {
+        try {
+            System.out.println("Removing Human object");
+        } finally {
+            super.finalize();
+        }
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Human human = (Human) o;

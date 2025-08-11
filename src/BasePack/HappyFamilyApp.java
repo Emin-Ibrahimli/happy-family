@@ -13,9 +13,13 @@ public class HappyFamilyApp {
 
         family.addChild(child);
         family.addChild(child2);
-        System.out.println(family.toString());
+        System.out.println(family);
 
 
         System.out.println("Family count: " + family.countFamily());
+
+        for (int i = 1; i <= 10_000_000; i++) {
+            new Human();
+        }
     }
 }
